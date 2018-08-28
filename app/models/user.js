@@ -1,6 +1,7 @@
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
-import { belongsTo, hasMany } from 'ember-data/relationships';
+import { hasMany } from 'ember-data/relationships';
+import Ember from 'ember';
 
 export default Model.extend({
   username: attr('string'),
@@ -14,5 +15,8 @@ export default Model.extend({
   created: attr('date', {
     defaultValue() {return new Date();}
   }),
-  bookmarks: hasMany('bookmark')
+  bookmarks: hasMany('bookmark'),
+  fullName: Ember.computed('firstName', 'lastName', function() {
+    return `${this.get('firstName')} ${this.get('lastName')}`;
+  })
 });

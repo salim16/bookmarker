@@ -21,6 +21,6 @@ let bookmarks = [{
 
 export default Ember.Route.extend({
 	model() {
-		return bookmarks;
+		return this.get('store').findAll('bookmark');
 	}
 });
